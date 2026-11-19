@@ -26,6 +26,16 @@
          - nao havendo nenhum, a frase:  Nenhuma oficina cadastrada.
        ================================================================== -->
 
+
+
+    {% if oficinas %}
+
+    <!--output: X eventos cadastrados-->
+     <p class="contagem">{{ oficinas|length }} oficina(s) cadastrados.</p>
+
+
+
+
   <ul id="lista">
     {% for item in oficinas %}
       <li>
@@ -46,4 +56,9 @@
     Consultas nesta sessão: <strong id="contador">{{ session["consultas"] }}</strong>
   </p>
 
+
+    {% else %}
+      <p class="contagem">Nenhum evento cadastrado.</p>
+    {% endif %}
 {% endblock %}
+
