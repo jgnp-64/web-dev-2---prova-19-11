@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block titulo %}Oficinas{% endblock %}
+
+{% block conteudo %}
+
+  <h2>Cadastrar oficina</h2>
+
+  <form method="post">
+    <input name="titulo" placeholder="Título" required>
+    <input name="instrutor" placeholder="Instrutor">
+    <input name="vagas" placeholder="Vagas">
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <h2>Oficinas</h2>
+
+  <div class="assincrono">
+    <button id="atualizar" type="button">atualizar lista</button>
+    <p class="aviso-js" id="aviso-js"></p>
+  </div>
+
+  <!-- ===== ITEM 2 =====================================================
+       Acima da lista, exiba:
+         - havendo registros, a contagem, no formato:  N registro(s).
+         - nao havendo nenhum, a frase:  Nenhuma oficina cadastrada.
+       ================================================================== -->
+
+  <ul id="lista">
+    {% for item in oficinas %}
+      <li>
+        <strong>{{ item.titulo }}</strong>
+        — {{ item.instrutor }}
+        — {{ item.vagas }}
+
+        <a href="{{ url_for('oficina.editar', id=item.id) }}">editar</a>
+
+        <form method="post" action="{{ url_for('oficina.excluir', id=item.id) }}">
+          <button type="submit">excluir</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p class="escopos">
+    Consultas nesta sessão: <strong id="contador">{{ session["consultas"] }}</strong>
+  </p>
+
+{% endblock %}

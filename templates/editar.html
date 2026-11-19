@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block titulo %}Editar oficina{% endblock %}
+
+{% block conteudo %}
+
+  <h2>Editar oficina</h2>
+
+  <form method="post">
+    <input name="titulo" value="{{ oficina.titulo }}" required>
+    <input name="instrutor" value="{{ oficina.instrutor }}">
+    <input name="vagas" value="{{ oficina.vagas }}">
+    <button type="submit">Salvar</button>
+  </form>
+
+  <p><a href="{{ url_for('oficina.index') }}">Cancelar</a></p>
+
+{% endblock %}
