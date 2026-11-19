@@ -10,6 +10,7 @@ class OficinaDAO:
     @staticmethod
     def salvar(oficina):
         db.session.add(oficina)
+        db.session.commit()
 
     # READ (todos)
     @staticmethod
@@ -19,7 +20,7 @@ class OficinaDAO:
     # READ (um) - devolve o objeto ou None
     @staticmethod
     def buscar_por_id(id):
-        return Oficina.query.get(id)
+        return Oficina.query.get(Oficina, id)
 
     # UPDATE
     @staticmethod
