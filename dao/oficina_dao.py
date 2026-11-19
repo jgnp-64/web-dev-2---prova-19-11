@@ -20,7 +20,7 @@ class OficinaDAO:
     # READ (um) - devolve o objeto ou None
     @staticmethod
     def buscar_por_id(id):
-        return Oficina.query.get(Oficina, id)
+        return db.session.get(Oficina, id)
 
     # UPDATE
     @staticmethod

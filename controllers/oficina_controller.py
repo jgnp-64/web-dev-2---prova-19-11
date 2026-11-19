@@ -46,6 +46,18 @@ def editar(id):
     # e gravado. Trate aqui o envio: grave a alteracao e volte a listagem.
     # =================================================================
 
+
+    if request.method == "POST":
+        OficinaDAO.atualizar(
+            oficina,
+            request.form["titulo"],
+            request.form["instrutor"],
+            request.form["vagas"]
+        )
+
+        flash("Oficina atualizada com sucesso!")
+        return redirect(url_for("oficina.index"))
+
     return render_template("editar.html", oficina=oficina)
 
 
