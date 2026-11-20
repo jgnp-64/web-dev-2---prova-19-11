@@ -35,6 +35,16 @@ def listar():
 # Se o id nao existir, a resposta e 404 com {"erro": "Oficina nao encontrada."}.
 # =====================================================================
 
+@api_bp.route("/oficinas/<int:id>", methods=["GET"])
+def buscar_por_id(id):
+    oficina = OficinaDAO.buscar_por_id(id)
+
+    if not oficina:
+        return jsonify({"erro": "Oficina nao encontrada."}), 404
+
+    return jsonify(oficina.para_dicionario()), 200
+
+
 
 # ===== ITEM 9 ========================================================
 # Escreva aqui a rota DELETE /api/oficinas/<id>, que remove UM registro.
