@@ -51,3 +51,14 @@ def buscar_por_id(id):
 # Sucesso: 204, sem corpo. Se o id nao existir: 404 com
 # {"erro": "Oficina nao encontrada."}.
 # =====================================================================
+
+@api_bp.route("/oficinas/<int:id>", methods=["DELETE"])
+def excluir(id):
+    oficina = OficinaDAO.buscar_por_id(id)
+
+    if not oficina:
+        return jsonify({"erro": "Oficina nao encontrada."}), 404
+
+    OficinaDAO.excluir(oficina)
+
+    return "", 204
